@@ -1,41 +1,26 @@
-const fs = require("fs");
 const tumblrLib = require("tumblr.js");
 const electron = require("electron");
 const {ipcRenderer} = electron;
 
-var credentials = "";
 
-fs.readFile("credentials.json", (err, data) => {
-    if (err)
-    {
-        console.log("Error reading file: " + err.message);
-    }
-    else
-    {
-        credentials = JSON.parse(data);
-        console.log(credentials);
-    }
-});
+const credentials = require("./credentials.json");
 
 module.exports = {
-    Authenticate: () => {
-        console.log("AUTHEN");
-        Authenticate();
-    }
+    Authenticate: Authenticate
 };
 
-function Authenticate()
-{
+function Authenticate(){
+    console.log("AUTHEN");
     const tumblr = new Tumblr();
-    var blog = tumblr.client.blogPosts("/info", {hostname: "amethystproductions.tumblr.com"})
-    console.log(blog);
+    // Async
+    tumblr.client.blogPosts(function(err, data) {
+    });
+    //console.log(blog);
     console.log("end");
 }
 
-class Tumblr
-{
-    constructor()
-    {
+class Tumblr {
+    constructor() {
         this.client = tumblrLib.createClient({
           consumer_key: credentials.tumblr.consumer_key,
           consumer_secret: credentials.tumblr.consumer_secret,
