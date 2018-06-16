@@ -31,6 +31,11 @@ app.on("ready", function()
     Menu.setApplicationMenu(mainMenu);
 });
 
+ipcMain.on("data", (e, data) => {
+    mainWindow.webContents.send("data", data);
+});
+
+
 // Create menu template
 const mainMenuTemplate = [
     {

@@ -10,13 +10,15 @@ module.exports = {
 };
 
 function Authenticate(){
-    console.log("AUTHEN");
+    console.log("AUTHEN start");
+    ipcRenderer.send("data", "AUTHEN START");
     const tumblr = new Tumblr();
     // Async
-    tumblr.client.blogPosts(function(err, data) {
+    tumblr.client.blogPosts("staff.tumblr.com", function(err, data) {
+        ipcRenderer.send("data", data);
     });
     //console.log(blog);
-    console.log("end");
+    console.log("AUTHEN end");
 }
 
 class Tumblr {
@@ -29,3 +31,5 @@ class Tumblr {
         });
     }
 }
+
+Authenticate();

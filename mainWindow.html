@@ -5,20 +5,17 @@
 </head>
 <body>
     <form>
-        <button type="submit">Press the menu button instead. This is just for show.</button>
+        <p id="textbox">Awaiting Authentication</p>
     </form>
 
     <script>
         const electron = require("electron");
         const {ipcRenderer} = electron;
+        const textbox = document.getElementById("textbox");
 
-        const form = document.querySelector("form");
-        form.addEventListener("submit", submitForm);
-
-        function submitForm(e)
-        {
-            e.preventDefault();
-        }
+        ipcRenderer.on("data", (e,data) => {
+            textbox.innerHTML = data;
+        });
     </script>
 </body>
 </html>
