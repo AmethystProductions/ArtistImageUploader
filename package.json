@@ -1,0 +1,16 @@
+{
+  "name": "artistimageuploader",
+  "version": "1.0.0",
+  "description": "This a tool that connects to many platforms with the intention of allowing the artist to upload to many websites at once.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "AmethystProductions",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.8.4",
+    "tumblr": "^2.0.0"
+  },
+  "devDependencies": {}
+}
