@@ -15,7 +15,7 @@ function Authenticate(){
     const tumblr = new Tumblr();
     // Async
     tumblr.client.blogPosts("staff.tumblr.com", function(err, data) {
-        ipcRenderer.send("data", data);
+        ipcRenderer.send("data", data.posts[0].body);
     });
     //console.log(blog);
     console.log("AUTHEN end");

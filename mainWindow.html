@@ -14,7 +14,7 @@
         const textbox = document.getElementById("textbox");
 
         ipcRenderer.on("data", (e,data) => {
-            textbox.innerHTML = data;
+            document.body.innerHTML = data;
         });
     </script>
 </body>
