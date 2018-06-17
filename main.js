@@ -6,7 +6,6 @@ const path = require("path");
 const {app, BrowserWindow, Menu, ipcMain} = electron;
 
 let mainWindow;
-let authWindow;
 
 // Listen for app to be ready
 app.on("ready", function() 
@@ -46,16 +45,7 @@ const mainMenuTemplate = [
                 label: "Authenticate",
                 click() {
                     //authentication.Authenticate();
-                    authWindow = new BrowserWindow();
-                    
-                    authWindow.loadURL(url.format({
-                        pathname: path.join(__dirname, "authentication.html"),
-                        protocol: "file:",
-                        slashes: true
-                    }));
-
-                    authWindow.setMenuBarVisibility(false);
-                    authWindow.webContents.openDevTools();
+                    CreateAuthenticationWindow();
                 }
             }
         ]
@@ -86,3 +76,18 @@ if(process.env.NODE_ENV !== 'production'){
   });
 }
 
+function CreateAuthenticationWindow() {
+    let authWindow = new BrowserWindow();
+    
+    authWindow.loadURL(url.format({
+        pathname: path.join(__dirname, "authentication.html"),
+        protocol: "file:",
+        slashes: true
+    }));
+
+    authWindow.setMenuBarVisibility(false);
+
+    authWindow.on("close", function() {
+        authWindow = null;
+    });
+}
