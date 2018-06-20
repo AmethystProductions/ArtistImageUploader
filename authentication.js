@@ -2,23 +2,27 @@ const tumblrLib = require("tumblr.js");
 const electron = require("electron");
 const {ipcRenderer} = electron;
 
+var tumblr;
 
 const credentials = require("./credentials.json");
+const site = "amethystproductions.tumblr.com"
 
 module.exports = {
-    Authenticate: Authenticate
+    Authenticate: Authenticate,
+    Post: (description) => Post(description)
 };
 
 function Authenticate(){
     console.log("AUTHEN start");
-    ipcRenderer.send("data", "AUTHEN START");
-    const tumblr = new Tumblr();
-    // Async
-    tumblr.client.blogPosts("staff.tumblr.com", function(err, data) {
-        ipcRenderer.send("data", data.posts[0].body);
-    });
-    //console.log(blog);
-    console.log("AUTHEN end");
+    tumblr = new Tumblr();
+    // tumblr.client.blogPosts("staff.tumblr.com", function(err, data) {
+    //     ipcRenderer.send("data", data.posts[0].body);
+    // });
+}
+
+function Post(description)
+{
+    tumblr.client.createTextPost(site, {title: "Title", body: "Body"});
 }
 
 class Tumblr {

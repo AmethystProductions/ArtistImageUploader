@@ -4,14 +4,16 @@
     <title>Artist Image Uploader</title>
 </head>
 <body>
+    <p>Post your artwork to: </p>
     <form>
-        <p id="textbox">Awaiting Authentication</p>
+        <input type="checkbox" name="site" value="tumblr">Tumblr<br>
+        <textarea>Enter description here.</textarea><br>
+        <input type="submit">
     </form>
 
     <script>
         const electron = require("electron");
         const {ipcRenderer} = electron;
-        const textbox = document.getElementById("textbox");
 
         ipcRenderer.on("data", (e,data) => {
             document.body.innerHTML = data;
