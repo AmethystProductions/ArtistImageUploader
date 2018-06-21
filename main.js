@@ -90,4 +90,6 @@ function CreateAuthenticationWindow() {
     authWindow.on("close", function() {
         authWindow = null;
     });
+
+    authWindow.toggleDevTools();
 }

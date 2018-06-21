@@ -10,3 +10,6 @@ $ npm start
 ```bash
 $ npm install
 ```
+
+
+This is a personal project and isn't a proper application, so to use this you're going to have to get your own `client_id`s and tokens. I do have plans on implementing the three-legged OAuth flow into this. But that might to out of my ability right now.

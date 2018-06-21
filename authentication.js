@@ -1,5 +1,6 @@
 const tumblrLib = require("tumblr.js");
 const electron = require("electron");
+const request = require("request");
 const {ipcRenderer} = electron;
 
 var tumblr;
@@ -9,18 +10,25 @@ const site = "amethystproductions.tumblr.com"
 
 module.exports = {
     Authenticate: Authenticate,
-    Post: (description) => Post(description)
+    Upload: (description) => Upload(description)
 };
 
 function Authenticate(){
-    console.log("AUTHEN start");
-    tumblr = new Tumblr();
-    // tumblr.client.blogPosts("staff.tumblr.com", function(err, data) {
-    //     ipcRenderer.send("data", data.posts[0].body);
-    // });
+    //tumblr = new Tumblr();
+    //window.location.href = "https://www.deviantart.com/oauth2/authorize";
+    // request.post(
+    //     "https://www.deviantart.com/oauth2/authorize",
+    //     {
+    //         response_type: "token", 
+    //         client_id: credentials.deviantart.client_id,
+    //         redirect_uri: "https://amethystproductions.github.io",
+    //         state: "test"
+    //     },
+    //     (data) => console.log(data)
+    // );
 }
 
-function Post(description)
+function Upload(description)
 {
     tumblr.client.createTextPost(site, {title: "Title", body: "Body"});
 }
