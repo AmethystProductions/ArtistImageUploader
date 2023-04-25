@@ -9,7 +9,7 @@
   "author": "AmethystProductions",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.8.7",
+    "electron": "^18.3.7",
     "tumblr.js": "^2.0.0"
   },
   "devDependencies": {},
